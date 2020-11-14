@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('./config/mongodb');
 
 const nodeSchema = new Schema({
     NumNodo: Number,
@@ -18,7 +18,7 @@ const nodeSchema = new Schema({
     Hora: String
 }); 
 
-module.exports = model("Node", nodeSchema);
+module.exports = model("Nodes", nodeSchema);
 
 
 /*

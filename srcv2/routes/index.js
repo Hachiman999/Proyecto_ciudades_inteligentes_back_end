@@ -1,10 +1,8 @@
 const {Router} = require('express');
 const router = Router();
 
-router.get('/',(req, res)=>{
- res.json({respuesta: "hola"}); 
-});
-router.get('/get', require('./get/index'))
-router.post('/post', require('./post/index'))
+router.use(require('./get/index'))
+router.use(require('./post/index'))
+router.use(require('./put/index'))
 
 module.exports = router; 
