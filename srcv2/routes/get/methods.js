@@ -73,7 +73,6 @@ const method_get = {
                 Presion,
                 Nubosidad,
             }=result[i];
-
             data_pro.Longitud.push(Longitud); data_pro.Temperatura.push(Temperatura);  data_pro.Humedad.push(Humedad); data_pro.Vel_viento.push(Vel_viento); data_pro.Temperatura_agua.push(Temperatura_agua);
             data_pro.Nivel_agua.push(Nivel_agua); data_pro.Caudal.push(Caudal); data_pro.Flujo.push(Flujo); data_pro.Punto_rocio.push(Punto_rocio);data_pro.Presion.push(Presion);data_pro.Nubosidad.push(Nubosidad);     
                   
