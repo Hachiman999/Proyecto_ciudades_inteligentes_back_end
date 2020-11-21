@@ -10,6 +10,7 @@ router.get("/avn", methods.avn);
 //Ruta para obtener el promedio de las variables de todos los nodos
 router.get("/avnall", methods.avnall);
 //Ruta para obtener los datos de todas las entradas de un nodo específico
+/*
 router.get("/input/:node", methods.input_Onenode);
 //Ruta para obtener los datos de la ultima entrada de un nodo específico
 router.get("/lastinput/:node", methods.lastInput);
@@ -25,5 +26,5 @@ router.get("/lastinput/:node", methods.lastInput);
 router.get("/sv/:variable", methods.svvar);
 //Path to get data from a specific variable from a specific node, variable table;
 router.get("/:varS/:nodeS", methods.varSnodeS);
-
+*/
 module.exports = router;
