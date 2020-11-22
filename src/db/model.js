@@ -1,24 +1,35 @@
 const { Schema, model } = require('./config/mongodb');
 
 const nodeSchema = new Schema({
-    NumNodo: Number,
-    Longitud:  Number,
-    Temperatura:  Number,
-    Humedad:  Number,
-    Vel_viento:  Number,
-    Dir_Viento: String,
-    Temperatura_agua:  Number,
-    Nivel_agua:  Number,
-    Caudal:  Number,
-    Flujo:  Number,
-    Punto_rocio:  Number,
-    Presion:  Number,
-    Nubosidad:  Number,
-    Fecha: String,
-    Hora: String
-}); 
+  NumNodo: Number,
+  Longitud: Number,
+  Latitud: Number,
+  Bateria: Number,
+  Estado: Boolean
 
-module.exports = model("Nodes", nodeSchema);
+});
+
+const dateSchema = new Schema({
+  NumNodo: Number,
+  Temperatura: Number,
+  Humedad: Number,
+  Vel_viento: Number,
+  Dir_Viento: String,
+  Temperatura_agua: Number,
+  Nivel_agua: Number,
+  Caudal: Number,
+  Flujo: Number,
+  Punto_rocio: Number,
+  Presion: Number,
+  Nubosidad: Number,
+  Fecha: String,
+  Hora: String
+
+})
+
+Nodes = model("Nodes", nodeSchema);
+Data = model("Date", dateSchema);
+module.exports = { Nodes, Data };
 
 
 /*
@@ -29,9 +40,9 @@ module.exports = model("Nodes", nodeSchema);
 "Humedad": 91,
 "Vel_viento": 10.427705369192157,
 "Dir_Viento": "N",
-"Temperatura_agua": 29.81673239717189,
-"Nivel_agua": 4.46439432797944,
-"Caudal": 3.2486182266260184,
+"Temperatura_agua"44,
+"Caudal": 3.248618: 29.81673239717189,
+"Nivel_agua": 4.4643943279792266260184,
 "Flujo": 1.1303340327061577,
 "Punto_rocio": 20.99,
 "Presion": 1018,

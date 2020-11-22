@@ -1,9 +1,9 @@
-const Nodes = require('../../db/model');
-const methods_post={
-    sd:async (req,res)=>{
+const { Nodes, Data } = require("../../db/model");
+const chalk = require("chalk");
+const methods_post = {
+    sd: async (req, res) => {
         const {
             NumNodo,
-            Longitud,
             Temperatura,
             Humedad,
             Vel_viento,
@@ -16,26 +16,24 @@ const methods_post={
             Presion,
             Nubosidad,
             Fecha,
-            Hora} = req.body; 
-        if(typeof  NumNodo === 'number' 
-           && typeof Longitud === 'number' 
-           &&  typeof Temperatura === 'number' 
-           &&  typeof  Humedad === 'number'
-           &&  typeof  Vel_viento === 'number'
-           &&  typeof  Dir_Viento === 'string'
-           &&  typeof Temperatura_agua === 'number'
-           &&  typeof  Nivel_agua === 'number'
-           &&  typeof Caudal === 'number'
-           &&  typeof  Flujo === 'number'
-           &&  typeof  Punto_rocio === 'number'
-           &&  typeof  Presion === 'number'
-           &&  typeof  Nubosidad === 'number'
-           &&  typeof  Fecha === 'string'
-           &&  typeof  Hora === 'string' ){
-           
-            const newNode = new Nodes({
+            Hora } = req.body;
+        if (typeof NumNodo === 'number'
+            && typeof Temperatura === 'number'
+            && typeof Humedad === 'number'
+            && typeof Vel_viento === 'number'
+            && typeof Dir_Viento === 'string'
+            && typeof Temperatura_agua === 'number'
+            && typeof Nivel_agua === 'number'
+            && typeof Caudal === 'number'
+            && typeof Flujo === 'number'
+            && typeof Punto_rocio === 'number'
+            && typeof Presion === 'number'
+            && typeof Nubosidad === 'number'
+            && typeof Fecha === 'string'
+            && typeof Hora === 'string') {
+
+            const newData = new Data({
                 NumNodo,
-                Longitud,
                 Temperatura,
                 Humedad,
                 Vel_viento,
@@ -50,11 +48,10 @@ const methods_post={
                 Fecha,
                 Hora
             });
-            try{
-                await newNode.save();
+            try {
+                await newData.save();
                 res.json({
                     NumNodo,
-                    Longitud,
                     Temperatura,
                     Humedad,
                     Vel_viento,
@@ -69,15 +66,47 @@ const methods_post={
                     Fecha,
                     Hora
                 });
-            }catch(error){
+            } catch (error) {
                 console.log(error)
             }
-        }else{
-            res.json({respuesta: "one or more data does not comply with the typing settle"})
+        } else {
+            res.json({ respuesta: "one or more data does not comply with the typing settle" })
         }
-        
-      
-        
+
+
+
+    },
+    cd: async (req, res) => {
+        const { NumNodo,
+            Longitud,
+            Latitud,
+            Bateria,
+            Estado } = req.body;
+        if (typeof NumNodo === 'number'
+            && typeof Longitud === 'number'
+            && typeof Latitud === 'number'
+            && typeof Bateria === 'number'
+            && typeof Estado === 'boolean'
+        ) {
+            const newNode = new Nodes({
+                NumNodo,
+                Longitud,
+                Latitud,
+                Bateria,
+                Estado
+            });
+            try {
+                await newNode.save();
+                const result = await Data.find({ NumNodo: NumNodo });
+                console.log(result);
+
+            } catch (err) {
+                console.log(chalk.red("El error es :=>") + chalk.white.bgRed(err));
+            }
+
+        }
+
+
     }
 }
 
