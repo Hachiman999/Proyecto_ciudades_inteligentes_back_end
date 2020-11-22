@@ -27,8 +27,8 @@ const dateSchema = new Schema({
 
 })
 
-Nodes = model("Nodes", nodeSchema);
-Data = model("Date", dateSchema);
+const Nodes = model("Nodes", nodeSchema);
+const Data = model("Date", dateSchema);
 module.exports = { Nodes, Data };
 
 
