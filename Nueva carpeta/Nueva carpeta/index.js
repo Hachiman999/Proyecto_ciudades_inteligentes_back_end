@@ -16,19 +16,54 @@ const nodeSchema = new Schema({
     Estado: Boolean
 
 });
+const dateSchema = new Schema({
+    NumNodo: Number,
+    Temperatura: Number,
+    Humedad: Number,
+    Vel_viento: Number,
+    Dir_Viento: String,
+    Temperatura_agua: Number,
+    Nivel_agua: Number,
+    Caudal: Number,
+    Flujo: Number,
+    Punto_rocio: Number,
+    Presion: Number,
+    Nubosidad: Number,
+    Fecha: String,
+    Hora: String
+  
+  })
 const Nodes = model("Nodes", nodeSchema);
+const Data = model("Date", dateSchema);
 
-const app = async (evento) => {
-    const result = await Nodes.find({});
-    return result;
-}
 
 exports.handler = async (event) => {
-    const result = await Nodes.find({});
+    var result;
+    const {
+        NumNodo,
+            Longitud,
+            Latitud,
+            Bateria,
+            Estado 
+      } = event; 
+      if (typeof NumNodo === 'number'
+      && typeof Longitud === 'number'
+      && typeof Latitud === 'number'
+      && typeof Bateria === 'number'
+      && typeof Estado === 'boolean'
+  ) {
+    try {
+        await Nodes.updateOne({NumNodo:NumNodo},{
+            Longitud,
+            Latitud,
+            Bateria,
+            Estado 
+        });
+        const data = await Nodes.findOne({ NumNodo: NumNodo });
+        result= data; 
+    }catch(err){}
+  }
 
-    const response = {
-        statusCode: 200,
-        body: JSON.stringify(result),
-    };
-    return response;
+
+    return result; 
 };

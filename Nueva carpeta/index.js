@@ -24,11 +24,13 @@ const app = async (evento) => {
 }
 
 exports.handler = async (event) => {
-    const result = await Nodes.find({});
-
+    const { node } = event;
+    const result = await Nodes.find({ NumNodo: node });
+    const { NumNodo } = result
+    const data = await Data.find({ NumNodo });
     const response = {
         statusCode: 200,
-        body: JSON.stringify(result),
+        body: JSON.stringify({ result, data }),
     };
     return response;
 };

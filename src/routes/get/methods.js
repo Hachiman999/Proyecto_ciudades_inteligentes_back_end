@@ -72,7 +72,7 @@ const method_get = {
     const { NumNodo } = result
     const respuest = [];
     for (var i = 0; i < NumNodo.length; i++) {
-      const resultData = await Nodes.find({ NumNodo: NumNodo[i] });
+      const resultData = await Data.find({ NumNodo: NumNodo[i] });
       const data_pro = {
         Longitud,
         Temperatura,
